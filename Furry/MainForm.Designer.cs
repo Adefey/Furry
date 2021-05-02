@@ -29,14 +29,18 @@ namespace Furry
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.inputButton = new System.Windows.Forms.Button();
+            this.workButton = new System.Windows.Forms.Button();
+            this.textBox = new System.Windows.Forms.TextBox();
+            this.plotChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.plotChart)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -44,8 +48,8 @@ namespace Furry
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.plotChart, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -55,22 +59,14 @@ namespace Furry
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(323, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(474, 444);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.button2, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.inputButton, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.workButton, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.textBox, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -80,37 +76,68 @@ namespace Furry
             this.tableLayoutPanel2.Size = new System.Drawing.Size(314, 444);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // button1
+            // inputButton
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 358);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 83);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Ввод";
-            this.button1.UseVisualStyleBackColor = true;
+            this.inputButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputButton.Location = new System.Drawing.Point(3, 358);
+            this.inputButton.Name = "inputButton";
+            this.inputButton.Size = new System.Drawing.Size(151, 83);
+            this.inputButton.TabIndex = 0;
+            this.inputButton.Text = "Ввод";
+            this.inputButton.UseVisualStyleBackColor = true;
+            this.inputButton.Click += new System.EventHandler(this.inputButton_Click);
             // 
-            // button2
+            // workButton
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(160, 358);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 83);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Обработка";
-            this.button2.UseVisualStyleBackColor = true;
+            this.workButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workButton.Location = new System.Drawing.Point(160, 358);
+            this.workButton.Name = "workButton";
+            this.workButton.Size = new System.Drawing.Size(151, 83);
+            this.workButton.TabIndex = 1;
+            this.workButton.Text = "Обработка";
+            this.workButton.UseVisualStyleBackColor = true;
+            this.workButton.Click += new System.EventHandler(this.workButton_Click);
+            // 
+            // textBox
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.textBox, 2);
+            this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox.Location = new System.Drawing.Point(3, 3);
+            this.textBox.Multiline = true;
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(308, 349);
+            this.textBox.TabIndex = 2;
+            // 
+            // plotChart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.plotChart.ChartAreas.Add(chartArea1);
+            this.plotChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.plotChart.Legends.Add(legend1);
+            this.plotChart.Location = new System.Drawing.Point(323, 3);
+            this.plotChart.Name = "plotChart";
+            series1.ChartArea = "ChartArea1";
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.plotChart.Series.Add(series1);
+            this.plotChart.Size = new System.Drawing.Size(474, 444);
+            this.plotChart.TabIndex = 2;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fourier transformation";
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.plotChart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -118,10 +145,11 @@ namespace Furry
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button inputButton;
+        private System.Windows.Forms.Button workButton;
+        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.DataVisualization.Charting.Chart plotChart;
     }
 }
 
