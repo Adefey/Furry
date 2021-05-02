@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ namespace Furry
 
         private void inputButton_Click(object sender, EventArgs e)
         {
-            F = new Function((x) => Math.Pow(x + 1, 3), 5);
+            F = new Function((x) => Math.Sin(1 / x), 5);
         }
 
         private async void workButton_Click(object sender, EventArgs e)
@@ -24,6 +25,7 @@ namespace Furry
             FT = new FourierTransformer(F, 0.01, 20);
 
             plotChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            plotChart.Series[0].Color = Color.DarkViolet;
 
             string textResult = "";
             List<Point2D> result = new List<Point2D>();
