@@ -64,6 +64,19 @@ namespace Furry
             return res;
         }
 
+        public string MakeSeriesString(double x)
+        {
+            string res = (EvaluateA0() / 2).ToString() + "+";
+            for (int n = 1; n <= maxN; n++)
+            {
+                double cosAdd = EvaluateAn(n) * CosN(x, n, F.GetL());
+                double sinAdd = EvaluateBn(n) * SinN(x, n, F.GetL());
+                res += "(" + cosAdd.ToString() + "+" + sinAdd.ToString() + ")+";
+            }
+            res = res.TrimEnd('+');
+            return res;
+        }
+
         public List<Point2D> MakeValueArr()
         {
             List<Point2D> listRes = new List<Point2D>();

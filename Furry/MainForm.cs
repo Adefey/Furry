@@ -16,12 +16,12 @@ namespace Furry
 
         private void inputButton_Click(object sender, EventArgs e)
         {
-            F = new Function((x) => Math.Pow(x + 1, 2), 3);
+            F = new Function((x) => Math.Pow(x + 1, 3), 5);
         }
 
         private async void workButton_Click(object sender, EventArgs e)
         {
-            FT = new FourierTransformer(F, 0.01, 100);
+            FT = new FourierTransformer(F, 0.01, 20);
 
             plotChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
@@ -30,6 +30,10 @@ namespace Furry
             await Task.Run(() =>
             {
                 result = FT.MakeValueArr();
+                foreach (Point2D po in result)
+                {
+                    textResult += $"Fourier series in point x={po.X} : {FT.MakeSeriesString(po.X)} = {po.Y} \r\n";
+                }
             });
             textBox.Text = textResult;
             foreach (Point2D po in result)
