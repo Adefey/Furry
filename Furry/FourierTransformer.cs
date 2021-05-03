@@ -7,86 +7,86 @@ namespace Furry
     {
         private Function F;
         private int maxN;
-        private double eps;
+        private decimal eps;
 
-        public FourierTransformer(Function F, double eps, int maxN)
+        public FourierTransformer(Function F, decimal eps, int maxN)
         {
             this.F = F;
             this.eps = eps;
             this.maxN = maxN;
         }
 
-        private double EvaluateA0()
+        private decimal EvaluateA0()
         {
-            double res = F.Integrate(eps);
+            decimal res = F.Integrate(eps);
             return 1 / F.GetL() * res;
         }
 
-        private double EvaluateAn(int n)
+        private decimal EvaluateAn(int n)
         {
-            double res = 0;
-            for (double x = -F.GetL(); x <= F.GetL(); x += eps)
+            decimal res = 0;
+            for (decimal x = -F.GetL(); x <= F.GetL(); x += eps)
             {
                 res += F.GetF()(x) * eps * CosN(x, n, F.GetL());
             }
             return res * (1 / F.GetL());
         }
 
-        private double CosN(double x, int n, double l)
+        private decimal CosN(decimal x, int n, decimal l)
         {
-            return Math.Cos((Math.PI * n * x) / l);
+            return (decimal)(Math.Cos((Math.PI * n * (double)x) / (double)l));
         }
 
-        private double EvaluateBn(int n)
+        private decimal EvaluateBn(int n)
         {
-            double res = 0;
-            for (double x = -F.GetL(); x <= F.GetL(); x += eps)
+            decimal res = 0;
+            for (decimal x = -F.GetL(); x <= F.GetL(); x += eps)
             {
                 res += F.GetF()(x) * eps * SinN(x, n, F.GetL());
             }
             return res * (1 / F.GetL());
         }
 
-        private double SinN(double x, int n, double l)
+        private decimal SinN(decimal x, int n, decimal l)
         {
-            return Math.Sin((Math.PI * n * x) / l);
+            return (decimal)(Math.Sin((Math.PI * n * (double)x) / (double)l));
         }
 
-        public double EvaluateFunction(double x)
+        public decimal EvaluateFunction(decimal x)
         {
-            double res = EvaluateA0() / 2;
+            decimal res = EvaluateA0() / 2;
             for (int n = 1; n <= maxN; n++)
             {
-                double cosAdd = EvaluateAn(n) * CosN(x, n, F.GetL());
-                double sinAdd = EvaluateBn(n) * SinN(x, n, F.GetL());
+                decimal cosAdd = EvaluateAn(n) * CosN(x, n, F.GetL());
+                decimal sinAdd = EvaluateBn(n) * SinN(x, n, F.GetL());
                 res += cosAdd + sinAdd;
             }
             return res;
         }
 
-        public string MakeSeriesString(double x)
+        public string MakeSeriesString(decimal x)
         {
-            string res = (EvaluateA0() / 2).ToString() + "+";
+            string res = $"{ Math.Round(EvaluateA0() / 2)}  + ";
             for (int n = 1; n <= maxN; n++)
             {
-                double cosAdd = EvaluateAn(n) * CosN(x, n, F.GetL());
-                double sinAdd = EvaluateBn(n) * SinN(x, n, F.GetL());
-                res += "(" + cosAdd.ToString() + "+" + sinAdd.ToString() + ")+";
+                decimal cosAdd = EvaluateAn(n) * CosN(x, n, F.GetL());
+                decimal sinAdd = EvaluateBn(n) * SinN(x, n, F.GetL());
+                res += $"( {Math.Round(cosAdd, 3)} + {Math.Round(sinAdd, 3)} ) + ";
             }
-            res = res.TrimEnd('+');
+            res = res.TrimEnd('+', ' ');
             return res;
         }
 
         public List<Point2D> MakeValueArr()
         {
             List<Point2D> listRes = new List<Point2D>();
-            for (double x = -F.GetL(); x <= F.GetL(); x += eps)
+            for (decimal x = -F.GetL(); x <= F.GetL(); x += eps)
             {
-                double res = EvaluateA0() / 2;
+                decimal res = EvaluateA0() / 2;
                 for (int n = 1; n <= maxN; n++)
                 {
-                    double cosAdd = EvaluateAn(n) * CosN(x, n, F.GetL());
-                    double sinAdd = EvaluateBn(n) * SinN(x, n, F.GetL());
+                    decimal cosAdd = EvaluateAn(n) * CosN(x, n, F.GetL());
+                    decimal sinAdd = EvaluateBn(n) * SinN(x, n, F.GetL());
                     res += cosAdd + sinAdd;
                 }
                 listRes.Add(new Point2D(x, res));
@@ -97,9 +97,9 @@ namespace Furry
 
     internal struct Point2D
     {
-        public double X;
-        public double Y;
-        public Point2D(double x, double y)
+        public decimal X;
+        public decimal Y;
+        public Point2D(decimal x, decimal y)
         {
             X = x;
             Y = y;

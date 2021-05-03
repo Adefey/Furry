@@ -1,11 +1,14 @@
-﻿namespace Furry
+﻿
+
+namespace Furry
+
 {
     internal class Function
     {
-        public delegate double func(double x);
+        public delegate decimal func(decimal x);
 
         private func f;
-        private double l;
+        private decimal l;
 
         public Function()
         {
@@ -13,18 +16,18 @@
             f = null;
         }
 
-        public Function(func f, double l)
+        public Function(func f, decimal l)
         {
             this.f = f;
             this.l = l;
         }
 
-        public void SetL(double l)
+        public void SetL(decimal l)
         {
             this.l = l;
         }
 
-        public double GetL()
+        public decimal GetL()
         {
             return l;
         }
@@ -39,20 +42,20 @@
             return f;
         }
 
-        public double Integrate(double eps)
+        public decimal Integrate(decimal eps)
         {
-            double res = 0;
-            for (double x = -l; x <= l; x += eps)
+            decimal res = 0;
+            for (decimal x = -l; x <= l; x += eps)
             {
                 res += f(x) * eps;
             }
             return res;
         }
 
-        public static double Integrate(Function func, double eps)
+        public static decimal Integrate(Function func, decimal eps)
         {
-            double res = 0;
-            for (double x = -func.l; x <= func.l; x += eps)
+            decimal res = 0;
+            for (decimal x = -func.l; x <= func.l; x += eps)
             {
                 res += func.f(x) * eps;
             }
