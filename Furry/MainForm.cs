@@ -24,7 +24,16 @@ namespace Furry
             int l = (int)numericUpDown1.Value;
             decimal eps = numericUpDown2.Value;
             int n = (int)numericUpDown3.Value;
-            Func<decimal, decimal> function = new Func<decimal, decimal>(MathParser.MakeExpr(inputTextBox.Text));
+            Func<decimal, decimal> function;
+            try
+            {
+                function = new Func<decimal, decimal>(MathParser.MakeExpr(inputTextBox.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Input error. Please note, if you use Math functions, you have to cast X to double manually", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             #endregion
 
             F = new Function(function, l);
@@ -37,7 +46,15 @@ namespace Furry
 
             await Task.Run(() =>
             {
-                result = FT.MakeValueArr();
+                try
+                {
+                    result = FT.MakeValueArr();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show($"Math error. May be your function is not determided somewhere from {-l} to {l}", "Math Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 foreach (Point2D po in result)
                 {
                     textResult += $"Fourier series in point x={po.X} : {FT.MakeSeriesString(po.X)} = {Math.Round(po.Y, 3)} \r\n";

@@ -29,9 +29,9 @@ namespace Furry
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.inputButton = new System.Windows.Forms.Button();
@@ -88,6 +88,7 @@ namespace Furry
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(314, 444);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
@@ -126,10 +127,11 @@ namespace Furry
             // 
             // inputTextBox
             // 
+            this.inputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.inputTextBox.Location = new System.Drawing.Point(3, 269);
             this.inputTextBox.Multiline = true;
             this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.Size = new System.Drawing.Size(151, 38);
+            this.inputTextBox.Size = new System.Drawing.Size(151, 82);
             this.inputTextBox.TabIndex = 3;
             this.inputTextBox.Text = "0";
             // 
@@ -162,7 +164,7 @@ namespace Furry
             this.numericUpDown1.Size = new System.Drawing.Size(44, 20);
             this.numericUpDown1.TabIndex = 0;
             this.numericUpDown1.Value = new decimal(new int[] {
-            3,
+            5,
             0,
             0,
             0});
@@ -208,7 +210,7 @@ namespace Furry
             this.numericUpDown3.Size = new System.Drawing.Size(45, 20);
             this.numericUpDown3.TabIndex = 4;
             this.numericUpDown3.Value = new decimal(new int[] {
-            10,
+            5,
             0,
             0,
             0});
@@ -227,27 +229,27 @@ namespace Furry
             this.numericUpDown2.Size = new System.Drawing.Size(44, 20);
             this.numericUpDown2.TabIndex = 5;
             this.numericUpDown2.Value = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             131072});
             // 
             // plotChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.plotChart.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.plotChart.ChartAreas.Add(chartArea3);
             this.plotChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.plotChart.Legends.Add(legend1);
+            legend3.Name = "Legend1";
+            this.plotChart.Legends.Add(legend3);
             this.plotChart.Location = new System.Drawing.Point(323, 3);
             this.plotChart.Name = "plotChart";
-            series1.ChartArea = "ChartArea1";
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "График функции";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.plotChart.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.Name = "График функции";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.plotChart.Series.Add(series3);
             this.plotChart.Size = new System.Drawing.Size(474, 444);
             this.plotChart.TabIndex = 2;
             // 

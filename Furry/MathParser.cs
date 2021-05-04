@@ -2,6 +2,7 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace Furry
 {
@@ -11,14 +12,12 @@ namespace Furry
 @"using System;
 namespace Parser
 {
-    public delegate decimal func(decimal x); 
-
     public static class LambdaCreator 
     {
         public static Func<decimal, decimal> Create()
         {
-            return (x)=>";
-        private static string end = @";
+            return (x)=>Convert.ToDecimal(";
+        private static string end = @");
         }
     }
 }";
