@@ -13,9 +13,14 @@ namespace Furry
         private Function F;
         private FourierTransformer FT;
         private List<Point2D> result = new List<Point2D>();
+
         public MainForm()
         {
             InitializeComponent();
+            plotChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            plotChart.Series[0].Color = Color.DarkViolet;
+            plotChart.ChartAreas[0].AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.SharpTriangle;
+            plotChart.ChartAreas[0].AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.SharpTriangle;
         }
 
         private async void inputButton_Click(object sender, EventArgs e)
@@ -31,17 +36,15 @@ namespace Furry
             }
             catch (Exception)
             {
-                MessageBox.Show("Input error. Please note, if you use Math functions, you have to cast X to double manually", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Input error. Please note, if you use Math functions, you have to cast X to double manually and you have to add m to numbers", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             #endregion
 
+
             F = new Function(function, l);
             FT = new FourierTransformer(F, eps, n);
-
-            plotChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            plotChart.Series[0].Color = Color.DarkViolet;
-
+          
             string textResult = "";
 
             await Task.Run(() =>
@@ -65,6 +68,8 @@ namespace Furry
 
         private void workButton_Click(object sender, EventArgs e)
         {
+            plotChart.ChartAreas[0].AxisX.Minimum = -(double)numericUpDown1.Value;
+            plotChart.ChartAreas[0].AxisX.Maximum = (double)numericUpDown1.Value;
             plotChart.Series[0].Points.Clear();
             foreach (Point2D po in result)
             {
