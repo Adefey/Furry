@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Furry
 {
-    public delegate decimal func(decimal x);
+    //public delegate decimal func(decimal x);
 
     public partial class MainForm : Form
     {
@@ -24,7 +24,7 @@ namespace Furry
             int l = (int)numericUpDown1.Value;
             decimal eps = numericUpDown2.Value;
             int n = (int)numericUpDown3.Value;
-            func function = new func(MathParser.MakeExpr(inputTextBox.Text));
+            Func<decimal, decimal> function = new Func<decimal, decimal>(MathParser.MakeExpr(inputTextBox.Text));
             #endregion
 
             F = new Function(function, l);
@@ -48,11 +48,10 @@ namespace Furry
 
         private void workButton_Click(object sender, EventArgs e)
         {
+            plotChart.Series[0].Points.Clear();
+            foreach (Point2D po in result)
             {
-                foreach (Point2D po in result)
-                {
-                    plotChart.Series[0].Points.AddXY(po.X, po.Y);
-                }
+                plotChart.Series[0].Points.AddXY(po.X, po.Y);
             }
         }
     }

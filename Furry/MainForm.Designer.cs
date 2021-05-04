@@ -29,16 +29,15 @@ namespace Furry
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.inputButton = new System.Windows.Forms.Button();
             this.workButton = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.TextBox();
             this.inputTextBox = new System.Windows.Forms.TextBox();
-            this.plotChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,13 +45,14 @@ namespace Furry
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.plotChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.plotChart)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plotChart)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -132,25 +132,6 @@ namespace Furry
             this.inputTextBox.Size = new System.Drawing.Size(151, 38);
             this.inputTextBox.TabIndex = 3;
             this.inputTextBox.Text = "0";
-            // 
-            // plotChart
-            // 
-            chartArea3.Name = "ChartArea1";
-            this.plotChart.ChartAreas.Add(chartArea3);
-            this.plotChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Name = "Legend1";
-            this.plotChart.Legends.Add(legend3);
-            this.plotChart.Location = new System.Drawing.Point(323, 3);
-            this.plotChart.Name = "plotChart";
-            series3.ChartArea = "ChartArea1";
-            series3.IsVisibleInLegend = false;
-            series3.Legend = "Legend1";
-            series3.Name = "График функции";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.plotChart.Series.Add(series3);
-            this.plotChart.Size = new System.Drawing.Size(474, 444);
-            this.plotChart.TabIndex = 2;
             // 
             // tableLayoutPanel3
             // 
@@ -251,6 +232,25 @@ namespace Furry
             0,
             131072});
             // 
+            // plotChart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.plotChart.ChartAreas.Add(chartArea1);
+            this.plotChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.plotChart.Legends.Add(legend1);
+            this.plotChart.Location = new System.Drawing.Point(323, 3);
+            this.plotChart.Name = "plotChart";
+            series1.ChartArea = "ChartArea1";
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "График функции";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.plotChart.Series.Add(series1);
+            this.plotChart.Size = new System.Drawing.Size(474, 444);
+            this.plotChart.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -263,12 +263,12 @@ namespace Furry
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.plotChart)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plotChart)).EndInit();
             this.ResumeLayout(false);
 
         }

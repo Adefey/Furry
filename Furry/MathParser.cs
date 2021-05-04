@@ -15,14 +15,14 @@ namespace Parser
 
     public static class LambdaCreator 
     {
-        public static func Create()
+        public static Func<decimal, decimal> Create()
         {
             return (x)=>";
         private static string end = @";
         }
     }
 }";
-        public static func MakeExpr(string Expr)
+        public static Func<decimal, decimal> MakeExpr(string Expr)
         {
             string middle = Expr;
             CSharpCodeProvider provider = new CSharpCodeProvider();
@@ -35,7 +35,7 @@ namespace Parser
             Type cls = results.CompiledAssembly.GetType("Parser.LambdaCreator");
             MethodInfo method = cls.GetMethod("Create", BindingFlags.Static | BindingFlags.Public);
             Delegate f = method.Invoke(null, null) as Delegate;
-            return (func)f;
+            return (Func<decimal, decimal>)f;
         }
     }
 }

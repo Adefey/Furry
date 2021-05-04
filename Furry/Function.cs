@@ -1,10 +1,10 @@
-﻿namespace Furry
+﻿using System;
+
+namespace Furry
 {
     internal class Function
-    {      
-        //public delegate decimal func(decimal x);
-
-        private func f;
+    {
+        private Func<decimal, decimal> f;
         private decimal l;
 
         public Function()
@@ -13,7 +13,7 @@
             f = null;
         }
 
-        public Function(func f, decimal l)
+        public Function(Func<decimal, decimal> f, decimal l)
         {
             this.f = f;
             this.l = l;
@@ -29,12 +29,12 @@
             return l;
         }
 
-        public void SetFunction(func f)
+        public void SetFunction(Func<decimal, decimal> f)
         {
             this.f = f;
         }
 
-        public func GetF()
+        public Func<decimal, decimal> GetF()
         {
             return f;
         }
