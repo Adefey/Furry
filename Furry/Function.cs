@@ -1,11 +1,8 @@
-﻿
-
-namespace Furry
-
+﻿namespace Furry
 {
     internal class Function
-    {
-        public delegate decimal func(decimal x);
+    {      
+        //public delegate decimal func(decimal x);
 
         private func f;
         private decimal l;

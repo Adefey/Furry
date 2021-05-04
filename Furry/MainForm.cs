@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace Furry
 {
+    public delegate decimal func(decimal x);
+
     public partial class MainForm : Form
     {
         private Function F;
@@ -18,8 +20,15 @@ namespace Furry
 
         private async void inputButton_Click(object sender, EventArgs e)
         {
-            F = new Function((x) => (decimal)Math.Pow((double)x + 1, 3), 5);
-            FT = new FourierTransformer(F, 0.02m, 20);
+            #region init values
+            int l = (int)numericUpDown1.Value;
+            decimal eps = numericUpDown2.Value;
+            int n = (int)numericUpDown3.Value;
+            func function = new func(MathParser.MakeExpr(inputTextBox.Text));
+            #endregion
+
+            F = new Function(function, l);
+            FT = new FourierTransformer(F, eps, n);
 
             plotChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             plotChart.Series[0].Color = Color.DarkViolet;
@@ -35,21 +44,15 @@ namespace Furry
                 }
             });
             textBox.Text = textResult;
-            inputTextBox.Text = "Done";
         }
 
         private void workButton_Click(object sender, EventArgs e)
         {
-            if (inputTextBox.Text == "Done")
             {
                 foreach (Point2D po in result)
                 {
                     plotChart.Series[0].Points.AddXY(po.X, po.Y);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Wait", "Not ready");
             }
         }
     }
