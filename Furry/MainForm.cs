@@ -6,45 +6,45 @@ using System.Windows.Forms;
 
 namespace Furry
 {
-    //public delegate decimal func(decimal x);
-
     public partial class MainForm : Form
     {
         private Function F;
         private FourierTransformer FT;
         private List<Point2D> result = new List<Point2D>();
+        private List<Point2D> originalFunction = new List<Point2D>();
 
         public MainForm()
         {
             InitializeComponent();
             plotChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            plotChart.Series[0].Color = Color.DarkViolet;
+            plotChart.Series[0].Color = Color.DarkRed;
+            plotChart.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            plotChart.Series[1].Color = Color.DarkViolet;
             plotChart.ChartAreas[0].AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.SharpTriangle;
-            plotChart.ChartAreas[0].AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.SharpTriangle;
+            plotChart.ChartAreas[0].AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.SharpTriangle;        
         }
 
         private async void inputButton_Click(object sender, EventArgs e)
         {
             #region init values
             int l = (int)numericUpDown1.Value;
-            decimal eps = numericUpDown2.Value;
+            double eps = (double)numericUpDown2.Value;
             int n = (int)numericUpDown3.Value;
-            Func<decimal, decimal> function;
+            Func<double, double> function;
             try
             {
-                function = new Func<decimal, decimal>(MathParser.MakeExpr(inputTextBox.Text));
+                function = new Func<double, double>(MathParser.MakeExpr(inputTextBox.Text));
             }
             catch (Exception)
             {
-                MessageBox.Show("Input error. Please note, if you use Math functions, you have to cast X to double manually and you have to add m to numbers", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Input error, call math functions using class Math", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             #endregion
 
-
             F = new Function(function, l);
             FT = new FourierTransformer(F, eps, n);
-          
+
             string textResult = "";
 
             await Task.Run(() =>
@@ -52,6 +52,7 @@ namespace Furry
                 try
                 {
                     result = FT.MakeValueArr();
+                    originalFunction = FT.MakeOriginalValueArr();
                 }
                 catch (Exception)
                 {
@@ -60,7 +61,7 @@ namespace Furry
                 }
                 foreach (Point2D po in result)
                 {
-                    textResult += $"Fourier series in point x={po.X} : {FT.MakeSeriesString(po.X)} = {Math.Round(po.Y, 3)} \r\n";
+                    textResult += $"Fourier series in point x={po.X} : {FT.MakeSeriesString(po.X)} = {Math.Round(po.Y, 3)} \r\n\r\n";
                 }
             });
             textBox.Text = textResult;
@@ -71,10 +72,20 @@ namespace Furry
             plotChart.ChartAreas[0].AxisX.Minimum = -(double)numericUpDown1.Value;
             plotChart.ChartAreas[0].AxisX.Maximum = (double)numericUpDown1.Value;
             plotChart.Series[0].Points.Clear();
+            plotChart.Series[1].Points.Clear();
             foreach (Point2D po in result)
             {
                 plotChart.Series[0].Points.AddXY(po.X, po.Y);
             }
+            foreach (Point2D po in originalFunction)
+            {
+                plotChart.Series[1].Points.AddXY(po.X, po.Y);
+            }                   
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AboutBox().Show();
         }
     }
 }

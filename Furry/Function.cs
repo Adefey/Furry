@@ -4,8 +4,8 @@ namespace Furry
 {
     internal class Function
     {
-        private Func<decimal, decimal> f;
-        private decimal l;
+        private Func<double, double> f;
+        private double l;
 
         public Function()
         {
@@ -13,46 +13,46 @@ namespace Furry
             f = null;
         }
 
-        public Function(Func<decimal, decimal> f, decimal l)
+        public Function(Func<double, double> f, double l)
         {
             this.f = f;
             this.l = l;
         }
 
-        public void SetL(decimal l)
+        public void SetL(double l)
         {
             this.l = l;
         }
 
-        public decimal GetL()
+        public double GetL()
         {
             return l;
         }
 
-        public void SetFunction(Func<decimal, decimal> f)
+        public void SetFunction(Func<double, double> f)
         {
             this.f = f;
         }
 
-        public Func<decimal, decimal> GetF()
+        public Func<double, double> GetF()
         {
             return f;
         }
 
-        public decimal Integrate(decimal eps)
+        public double Integrate(double eps)
         {
-            decimal res = 0;
-            for (decimal x = -l; x <= l; x += eps)
+            double res = 0;
+            for (double x = -l; x <= l; x += eps)
             {
                 res += f(x) * eps;
             }
             return res;
         }
 
-        public static decimal Integrate(Function func, decimal eps)
+        public static double Integrate(Function func, double eps)
         {
-            decimal res = 0;
-            for (decimal x = -func.l; x <= func.l; x += eps)
+            double res = 0;
+            for (double x = -func.l; x <= func.l; x += eps)
             {
                 res += func.f(x) * eps;
             }

@@ -2,7 +2,6 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Reflection;
-using System.Windows.Forms;
 
 namespace Furry
 {
@@ -14,14 +13,14 @@ namespace Parser
 {
     public static class LambdaCreator 
     {
-        public static Func<decimal, decimal> Create()
+        public static Func<double, double> Create()
         {
-            return (x)=>Convert.ToDecimal(";
-        private static string end = @");
+            return (x)=>";
+        private static string end = @";
         }
     }
 }";
-        public static Func<decimal, decimal> MakeExpr(string Expr)
+        public static Func<double, double> MakeExpr(string Expr)
         {
             string middle = Expr;
             CSharpCodeProvider provider = new CSharpCodeProvider();
@@ -34,7 +33,7 @@ namespace Parser
             Type cls = results.CompiledAssembly.GetType("Parser.LambdaCreator");
             MethodInfo method = cls.GetMethod("Create", BindingFlags.Static | BindingFlags.Public);
             Delegate f = method.Invoke(null, null) as Delegate;
-            return (Func<decimal, decimal>)f;
+            return (Func<double, double>)f;
         }
     }
 }
