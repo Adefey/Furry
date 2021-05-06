@@ -75,11 +75,11 @@ namespace Furry
             plotChart.Series[1].Points.Clear();
             foreach (Point2D po in result)
             {
-                plotChart.Series[0].Points.AddXY(po.X, po.Y);
+                plotChart.Series[1].Points.AddXY(po.X, po.Y);
             }
             foreach (Point2D po in originalFunction)
             {
-                plotChart.Series[1].Points.AddXY(po.X, po.Y);
+                plotChart.Series[0].Points.AddXY(po.X, po.Y);
             }                   
         }
 
