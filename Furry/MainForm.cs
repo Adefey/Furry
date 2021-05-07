@@ -61,7 +61,7 @@ namespace Furry
                 }
                 foreach (Point2D po in result)
                 {
-                    textResult += $"Fourier series in point x={po.X} : {FT.MakeSeriesString(po.X)} = {Math.Round(po.Y, 3)} \r\n\r\n";
+                    textResult += $"Fourier series in point x={Math.Round(po.X, 3)} : {FT.MakeSeriesString(po.X)} = {Math.Round(po.Y, 3)} \r\n\r\n";
                 }
             });
             textBox.Text = textResult;
