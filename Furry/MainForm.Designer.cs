@@ -239,7 +239,7 @@ namespace Furry
             1,
             0,
             0,
-            131072});
+            196608});
             this.numericUpDown2.Location = new System.Drawing.Point(59, 43);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(50, 20);
