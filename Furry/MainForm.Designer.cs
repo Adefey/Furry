@@ -139,7 +139,7 @@ namespace Furry
             this.inputTextBox.Name = "inputTextBox";
             this.inputTextBox.Size = new System.Drawing.Size(167, 80);
             this.inputTextBox.TabIndex = 3;
-            this.inputTextBox.Text = "0";
+            this.inputTextBox.Text = "x";
             // 
             // tableLayoutPanel3
             // 
@@ -233,7 +233,7 @@ namespace Furry
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.DecimalPlaces = 2;
+            this.numericUpDown2.DecimalPlaces = 3;
             this.numericUpDown2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericUpDown2.Increment = new decimal(new int[] {
             1,

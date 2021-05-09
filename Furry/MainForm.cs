@@ -21,7 +21,7 @@ namespace Furry
             plotChart.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             plotChart.Series[1].Color = Color.DarkViolet;
             plotChart.ChartAreas[0].AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.SharpTriangle;
-            plotChart.ChartAreas[0].AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.SharpTriangle;        
+            plotChart.ChartAreas[0].AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.SharpTriangle;
         }
 
         private async void inputButton_Click(object sender, EventArgs e)
@@ -80,7 +80,7 @@ namespace Furry
             foreach (Point2D po in originalFunction)
             {
                 plotChart.Series[0].Points.AddXY(po.X, po.Y);
-            }                   
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

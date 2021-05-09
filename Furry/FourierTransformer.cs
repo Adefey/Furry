@@ -24,11 +24,7 @@ namespace Furry
 
         private double EvaluateAn(int n)
         {
-            double res = 0;
-            for (double x = -F.GetL(); x <= F.GetL(); x += eps)
-            {
-                res += F.GetF()(x) * eps * CosN(x, n, F.GetL());
-            }
+            double res = Function.Integrate((x) => F.GetF()(x) * CosN(x, n, F.GetL()), F.GetL(), eps);
             return res * (1 / F.GetL());
         }
 
@@ -39,11 +35,7 @@ namespace Furry
 
         private double EvaluateBn(int n)
         {
-            double res = 0;
-            for (double x = -F.GetL(); x <= F.GetL(); x += eps)
-            {
-                res += F.GetF()(x) * eps * SinN(x, n, F.GetL());
-            }
+            double res = Function.Integrate((x) => F.GetF()(x) * SinN(x, n, F.GetL()), F.GetL(), eps);
             return res * (1 / F.GetL());
         }
 

@@ -58,5 +58,15 @@ namespace Furry
             }
             return res;
         }
+
+        public static double Integrate(Func<double, double> func, double r, double eps)
+        {
+            double res = 0;
+            for (double x = -r; x <= r; x += eps)
+            {
+                res += func(x) * eps;
+            }
+            return res;
+        }
     }
 }
