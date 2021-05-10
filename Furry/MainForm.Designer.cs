@@ -105,7 +105,7 @@ namespace Furry
             this.inputButton.Name = "inputButton";
             this.inputButton.Size = new System.Drawing.Size(167, 81);
             this.inputButton.TabIndex = 0;
-            this.inputButton.Text = "Ввод и вычисление";
+            this.inputButton.Text = "Enter and evaluate";
             this.inputButton.UseVisualStyleBackColor = true;
             this.inputButton.Click += new System.EventHandler(this.inputButton_Click);
             // 
@@ -116,7 +116,7 @@ namespace Furry
             this.workButton.Name = "workButton";
             this.workButton.Size = new System.Drawing.Size(168, 81);
             this.workButton.TabIndex = 1;
-            this.workButton.Text = "Показать график";
+            this.workButton.Text = "Show plot";
             this.workButton.UseVisualStyleBackColor = true;
             this.workButton.Click += new System.EventHandler(this.workButton_Click);
             // 
