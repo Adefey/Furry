@@ -13,9 +13,51 @@ namespace Parser
 {
     public static class LambdaCreator 
     {
+        
+        private static double sin(double x)
+        {
+            return Math.Sin(x);
+        }
+
+        private static double cos(double x)
+        {
+            return Math.Cos(x);
+        }
+
+        private static double ln(double x)
+        {
+            return Math.Log(x);
+        }
+
+        private static double exp(double x)
+        {
+            return Math.Exp(x);
+        }
+
+        private static double abs(double x)
+        {
+            return Math.Abs(x);
+        }
+
+        private static double sqrt(double x)
+        {
+            return Math.Sqrt(x);
+        }
+
+        private static double arcsin(double x)
+        {
+            return Math.Asin(x);
+        }
+
+        private static double arccos(double x)
+        {
+            return Math.Acos(x);
+        }
+
         public static Func<double, double> Create()
         {
             return (x)=>";
+
         private static string end = @";
         }
     }

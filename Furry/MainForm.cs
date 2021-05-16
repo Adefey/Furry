@@ -37,7 +37,7 @@ namespace Furry
             }
             catch (Exception)
             {
-                MessageBox.Show("Input error, call math functions using class Math", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Input error. Your function is not in function list. Call math functions using class Math", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             #endregion
