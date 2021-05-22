@@ -58,7 +58,7 @@ namespace Furry
 
         public string MakeSeriesString(double x)
         {
-            string res = $"{ Math.Round(EvaluateA0() / 2)}  + ";
+            string res = $"{ Math.Round(EvaluateA0() / 2, 3)}  + ";
             for (int n = 1; n <= maxN; n++)
             {
                 double cosAdd = EvaluateAn(n) * CosN(x, n, F.GetL());

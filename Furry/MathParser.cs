@@ -54,6 +54,20 @@ namespace Parser
             return Math.Acos(x);
         }
 
+        private static double dz1(double x)
+        {
+            double res = 0;
+            if ((-3 < x) && (x < -2))
+            {
+                res = 1;
+            }
+            if ((1 < x) && (x < 3))
+            {
+                res = 2;
+            }
+            return res;
+        }
+
         public static Func<double, double> Create()
         {
             return (x)=>";
