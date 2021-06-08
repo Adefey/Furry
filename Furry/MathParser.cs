@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Furry
 {
-    internal class MathParser
+    internal static class MathParser
     {
         private static string begin =
 @"using System;

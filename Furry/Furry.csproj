@@ -97,6 +97,7 @@
     <Compile Include="FourierTransformer.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="MathParser.cs" />
+    <Compile Include="Point2D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
